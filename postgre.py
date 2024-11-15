@@ -2,7 +2,6 @@ import psycopg2
 from psycopg2 import Error
 from typing import List, Dict, Any, Optional, Tuple, Union
 from contextlib import contextmanager
-import logging
 import csv
 import os
 import shutil
@@ -146,7 +145,7 @@ class PostgresHandler:
             self.logger.log('INSERT', table_name, 'ERROR', error=str(e), execution_time=execution_time)
             return None
 
-    def bulk_insert(self, table_name: str, data: List[Dict[str, Any]]) -> List[int]:
+    def bulk_insert(self, table_name: str, data: List[Dict[str, Any]]|pd.DataFrame) -> List[int]:
         """
         Insert multiple records into a table and return their IDs.
         
